@@ -126,6 +126,11 @@ def extract_v_table(mdp: tm.TohMdp, q_table: tm.QTable) -> tm.VTable:
             The extracted value table.
     """
     # *** BEGIN OF YOUR CODE ***
+    v_table = {}
+    for q in q_table:
+        if v_table.get(q[0]) is None: v_table[q[0]] = q_table[q]
+        v_table[q[0]] = max(v_table[q[0]], q_table[q])
+    return v_table
 
 
 def choose_next_action(
