@@ -162,12 +162,13 @@ def choose_next_action(
             The chosen action.
     """
     # *** BEGIN OF YOUR CODE ***
-    actions = []
+    best_actions = []
     for (s, a) in q_table:
         if s == state:
-            actions.append(a)
-    best_action = epsilon_greedy(actions, epsilon)
-    print(best_action, '\n') #del
+            if len(best_actions) == 0: best_actions.append(a)
+            if q_table[(s,a)] > q_table[(s, best_actions[0])]: best_actions = [a]
+            elif q_table[(s,a)] == q_table[(s, best_actions[0])]: best_actions.append(a)
+    best_action = epsilon_greedy(best_actions, epsilon)
     return best_action
 
 
