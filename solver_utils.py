@@ -1,6 +1,6 @@
 # Partnership? YES
-# Submitting partner: Jay Yu
-# Other partner: Runying Chen
+# Submitting partner: Runying Chen
+# Other partner: Jay Yu
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
