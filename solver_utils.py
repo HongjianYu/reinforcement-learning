@@ -162,6 +162,13 @@ def choose_next_action(
             The chosen action.
     """
     # *** BEGIN OF YOUR CODE ***
+    actions = []
+    for (s, a) in q_table:
+        if s == state:
+            actions.append(a)
+    best_action = epsilon_greedy(actions, epsilon)
+    print(best_action, '\n') #del
+    return best_action
 
 
 def custom_epsilon(n_step: int) -> float:
