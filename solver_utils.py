@@ -1,3 +1,7 @@
+# Partnership? YES
+# Submitting partner: Jay Yu
+# Other partner: Runying Chen
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from typing import Tuple, Callable, List
@@ -33,6 +37,22 @@ def value_iteration(
     # noinspection PyUnusedLocal
     max_delta = 0.0
     # *** BEGIN OF YOUR CODE ***
+    for s in v_table:
+        q_list = []
+        if s == mdp.terminal:
+            q = 0.0
+            q_list.append(q)
+            q_table[(s, "Exit")] = q
+        else:
+            for a in mdp.actions:
+                q = 0.0
+                for t in v_table:
+                    q += mdp.transition(s, a, t) * (mdp.reward(s, a, t) + mdp.config.gamma * v_table[t])
+                q_list.append(q)
+                q_table[(s, a)] = q
+        v = max(q_list)
+        max_delta = max(abs(v - v_table[s]), max_delta)
+        new_v_table[s] = v
     # ***  END OF YOUR CODE  ***
     return new_v_table, q_table, max_delta
 
